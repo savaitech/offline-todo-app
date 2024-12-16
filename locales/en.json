@@ -12,6 +12,6 @@
     "editTask": "Edit todo",
     "addTask": "Add todo",
     "offlineMessage": "You are offline",
-    "cleanTasks": "Clean all todos"
+    "cleanTasks": "Clean all todos from Local Storage"
   }
 }
