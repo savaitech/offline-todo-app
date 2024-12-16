@@ -5,7 +5,7 @@ import { useTasks } from '../../contexts/TaskContext';
 import { useNavigation } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 
-const TaskAddScreen: React.FC = () => {
+const TaskDetailsScreen: React.FC = () => {
   const [title, setTitle] = useState('');
   const { addTask } = useTasks();
   const navigation = useNavigation();
@@ -25,7 +25,7 @@ const TaskAddScreen: React.FC = () => {
         value={title}
         onChangeText={setTitle}
       />
-      <StyledButton title={t('common.save')} onPress={handleAddTask} />
+      <Button title={t('common.save')} onPress={handleAddTask} />
     </Container>
   );
 };
@@ -43,6 +43,5 @@ const StyledTextInput = styled.TextInput`
   border-radius: 5px;
 `;
 
-const StyledButton = styled(Button)``;
 
-export default TaskAddScreen;
+export default TaskDetailsScreen;

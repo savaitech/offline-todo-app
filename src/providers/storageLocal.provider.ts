@@ -41,8 +41,15 @@ export const storageLocalProvider: StorageInterface = {
 
   deleteTask: async (taskId: string): Promise<void> => {
     const tasks = await storageLocalProvider.getTasks();
-    const updatedTasks = tasks.filter((task) => task.id !== taskId);
-
+    const updatedTasks = tasks.map((task) =>
+      task.id === taskId
+      ? {
+        ...task,
+        updatedAt: Date.now(),
+        deletedAt: Date.now(), //work around because the api dosen't support real deletion
+      }
+      : task
+    );
     // Save the updated task list
     await storageLocalProvider.saveTasks(updatedTasks);
 

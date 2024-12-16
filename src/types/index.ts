@@ -10,5 +10,6 @@ export interface Task {
   todo: string;
   completed: boolean;
   updatedAt: number;
+  deletedAt?: number;
   syncedAt?: number;
 }

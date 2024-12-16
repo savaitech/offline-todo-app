@@ -11,6 +11,7 @@
     "newTask": "New todo",
     "editTask": "Edit todo",
     "addTask": "Add todo",
-    "offlineMessage": "You are offline"
+    "offlineMessage": "You are offline",
+    "cleanTasks": "Clean all todos"
   }
 }

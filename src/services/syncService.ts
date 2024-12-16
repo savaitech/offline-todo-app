@@ -7,7 +7,7 @@ export const syncService = {
     const localTasks = await storageManager.getTasks();
     const result  = await apiService.get('todos');
     const serverTasks = result.todos
-    .slice(0, 5)
+    .slice(0, 15)
     .map((task: any) => ({
       ...task,
       // mock updatedAt to simulate changes on the server and client

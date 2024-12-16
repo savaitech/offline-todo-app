@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import TaskListScreen from '../screens/TaskListScreen';
-import TaskAddScreen from '../screens/TaskAddScreen';
+import TaskAddScreen from '../screens/TaskDetailsScreen';
 import { RootStackParamList } from '../types';
 
 const Stack = createStackNavigator<RootStackParamList>();

@@ -1,9 +1,13 @@
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native';
-import { LinearTransition, FadeIn, FadeOut } from 'react-native-reanimated';
+import Animated, {
+  LinearTransition,
+  FadeInDown,
+  FadeOutUp,
+} from 'react-native-reanimated';
+import styled from 'styled-components/native';
 import { Task } from '../../types';
-import { AnimatedContainer, Content, Title } from './TaskItem.styles';
 
 type TaskItemProps = {
   task: Task;
@@ -21,9 +25,9 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) => {
 
   return (
     <AnimatedContainer
-      layout={LinearTransition.springify()}
-      entering={FadeIn}
-      exiting={FadeOut}
+      layout={LinearTransition.springify().damping(15).stiffness(50)}
+      entering={FadeInDown.duration(0)}
+      exiting={FadeOutUp.duration(0)}
     >
       <Content>
         <TouchableOpacity onPress={onToggle}>
@@ -35,12 +39,38 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) => {
         </Title>
       </Content>
 
-          <Ionicons name={syncStatusIcon} size={24} color={syncStatusColor} />
+      <Ionicons name={syncStatusIcon} size={24} color={syncStatusColor} />
       <TouchableOpacity onPress={onDelete}>
         <Ionicons name="trash" size={24} color="#FF5C5C" />
       </TouchableOpacity>
     </AnimatedContainer>
   );
 };
+
+// Styled Components
+const AnimatedContainer = styled(Animated.View)`
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-vertical: 5px;
+  background-color: #fff;
+  border-radius: 8px;
+  elevation: 1;
+`;
+
+const Content = styled.View`
+  flex-direction: row;
+  align-items: center;
+  flex: 1;
+`;
+
+const Title = styled.Text<{ completed: boolean }>`
+  font-size: 16px;
+  font-weight: 500;
+  color: ${({ completed }) => (completed ? '#888' : '#333')};
+  text-decoration-line: ${({ completed }) => (completed ? 'line-through' : 'none')};
+  flex-shrink: 1;
+`;
 
 export default TaskItem;
