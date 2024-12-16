@@ -21,12 +21,11 @@ const TaskListScreen: React.FC = () => {
   
   const sortedTasks = useMemo(() => {
     return [...tasks].sort((a, b) => {
-      // Uncompleted tasks should come first
+  //     // Uncompleted tasks should come first
       if (!a.completed && b.completed) return -1;
       if (a.completed && !b.completed) return 1;
-  
-      // For tasks with the same completion status, sort by updatedAt (descending)
-      return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
+
+      return new Date(b.id).getTime() - new Date(a.id).getTime();
     });
   }, [tasks]);
 
